@@ -2299,7 +2299,7 @@ static u8 ChangeEncProb(	const BOOL inIsFishing,
 		if (inIsFishing){		//釣り
 			//きゅうばん、ねんちゃくならエンカウント率2倍
 			if( (inFldSpa->Spa == TOKUSYU_NENTYAKU)||(inFldSpa->Spa == TOKUSYU_KYUUBAN) ){
-				prob*2;
+				prob*=2;
 			}
 		}else{					//釣り以外
 			//ありじごく、ノーガードならエンカウント率2倍
