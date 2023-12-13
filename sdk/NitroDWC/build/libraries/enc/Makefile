@@ -30,7 +30,7 @@ NITRODWC_LIB_MODULES_   = enc
 
 TARGET_LIB	=	libdwcenc.a
 
-CCFLAGS_MSGSTYLE = -msgstyle gcc
+CCFLAGS_MSGSTYLE =
 
 #----------------------------------------------------------------------------
 

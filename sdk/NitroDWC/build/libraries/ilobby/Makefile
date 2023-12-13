@@ -36,7 +36,7 @@ NITRODWC_LIB_MODULES_ = ppwlobby
 NITRODWC_MODULE_NAME :=   ilobby
 TARGET_LIB	=	lib$(NITRODWC_LIB_PREFIX)$(NITRODWC_MODULE_NAME)$(NITRO_LIBSUFFIX).a
 
-CCFLAGS_MSGSTYLE = -msgstyle gcc
+CCFLAGS_MSGSTYLE =
 
 #----------------------------------------------------------------------------
 

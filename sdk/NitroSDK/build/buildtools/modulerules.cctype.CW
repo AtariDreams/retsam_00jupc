@@ -267,7 +267,7 @@ INCLUDE_DIRS		= $(subst \ -I,\ ,$(addprefix -I,$(call PATH_UNIX2DOS,$(AINCLUDE_D
 LIBRARY_DIRS		= $(subst \ -L,\ ,$(addprefix -L,$(call PATH_UNIX2DOS,$(ALIBRARY_DIRS))))
 LIBRARIES		= $(subst \ -l,\ ,$(addprefix -l,$(ALIBRARIES)))
 
-INCLUDES		= -gccinc -I. $(INCLUDE_DIRS)
+INCLUDES		= -I. $(INCLUDE_DIRS)
 
 ifdef	MSYSTEM		# for MinGW32
 QUOTE			='
@@ -322,7 +322,7 @@ ifeq	($(MAKECMDGOALS),do-build)
 define BUILD_PCHDR
 	@$(CP) $(PCHDR_SRC) $(1).h
 	($(CD) $(dir $(1).mch) && \
-	 $(CC) $(subst -include ,-DSDK_PCHDR_DUMMY_,$(2)) $(INCLUDES) -MD -precompile $(notdir $(1).mch) $(notdir $(1).h))
+	 $(CC) $(subst -include ,-DSDK_PCHDR_DUMMY_,$(2)) $(INCLUDES) -MD -x c-header -c $(notdir $(1).mch) $(notdir $(1).h))
 	@($(ECHO) $(1).mch: $(PCHDR_SRC) \\       >  $(1).depend && \
 	  $(SED) -e '1d' -e $(DEPEND_RULE) -e $(PATH_DEPEND_RULE) $(1).d >> $(1).depend && $(RM) $(1).d $(1).h)
 endef

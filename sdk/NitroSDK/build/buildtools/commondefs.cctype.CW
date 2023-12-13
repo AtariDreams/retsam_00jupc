@@ -440,10 +440,10 @@ else
 CW_VERSION ?= 2.0/sp2p2
 endif
 
-MWCC			 = $(WINE) $(CW_BINDIR)/$(CW_VERSION)/mwccarm.exe
-MWAS			:= $(WINE) $(CW_BINDIR)/mwasmarm.exe
-MWLD			:= $(WINE) $(CW_BINDIR)/mwldarm.exe
-MWAR			:= $(MWLD)
+MWCC			 = arm-none-eabi-gcc
+MWAS			:= arm-none-eabi-as
+MWLD			:= arm-none-eabi-ld
+MWAR			:= arm-none-eabi-ar
 
 CC			 = $(MWCC)
 AS			:= $(MWAS)
@@ -653,8 +653,8 @@ MACRO_FLAGS_AS	+= -DSDK_CODE_$(CODEGEN_AS)
 #-------------------------------------- CODEGEN_PROC ARM9/ARM7
 ifeq		($(CODEGEN_PROC),ARM9)
 
-CCFLAGS_PROC	:= -proc $(if $(SDK_CW_AVOID_ARM_ARCH5),arm7tdmi,arm946e)
-ASFLAGS_PROC	:= -proc arm5TE
+CCFLAGS_PROC	:= -mcpu=$(if $(SDK_CW_AVOID_ARM_ARCH5),arm7tdmi,arm946e-s)
+ASFLAGS_PROC	:= -march=armv5te
 
 ifeq		($(NITRO_PLATFORM),TEG)
 CCFLAGS_PROC	+= $(CW_AVOID_STRB)
@@ -662,8 +662,8 @@ endif
 
 else	#	($(CODEGEN_PROC),ARM7)
 
-CCFLAGS_PROC	:= -proc arm7tdmi
-ASFLAGS_PROC	:= -proc arm4T
+CCFLAGS_PROC	:= -mcpu=arm7tdmi
+ASFLAGS_PROC	:= -march=armv4t
 
 endif	#	($(CODEGEN_PROC))
 
@@ -679,9 +679,9 @@ endif
 #-------------------------------------- CODEGEN_CC  ARM/THUMB
 
 ifeq		($(CODEGEN_CC),THUMB)
-CCFLAGS_ISET	:= -thumb
+CCFLAGS_ISET	:= -mthumb
 else
-CCFLAGS_ISET	:= -nothumb
+CCFLAGS_ISET	:= -marm
 endif
 
 
@@ -694,10 +694,10 @@ ASFLAGS_ISET	:= -32
 endif
 
 
-CCFLAGS_ARCH	?= $(CCFLAGS_PROC) $(CCFLAGS_ISET) -nopic -nopid -interworking
+CCFLAGS_ARCH	?= $(CCFLAGS_PROC) $(CCFLAGS_ISET) -fno-pic -mthumb-interwork
 ASFLAGS_ARCH	?= $(ASFLAGS_PROC) $(ASFLAGS_ISET)
-LDFLAGS_ARCH	?= $(CCFLAGS_PROC) $(CCFLAGS_ISET) -nopic -nopid -interworking
-ARFLAGS_ARCH	?=
+LDFLAGS_ARCH	?= $(CCFLAGS_PROC) $(CCFLAGS_ISET) -fno-pic -mthumb-interwork
+ARFLAGS_ARCH	?= 
 
 #----------------------------------------------------------------------------
 #  standard includes/libraries for CodeWarrior
@@ -722,20 +722,14 @@ MACRO_FLAGS	+= -DSDK_$(NITRO_BUILD_TYPE)
 
 ifeq		($(NITRO_BUILD_TYPE),DEBUG)
 
-CCFLAGS_OPT	?= -O0 -inline off
+CCFLAGS_OPT	?= -O0
 ASFLAGS_OPT	?=
 LDFLAGS_OPT	?=
 ARFLAGS_OPT	?=
 
 else
 
-CCFLAGS_OPT_O_	= -O4 -inline on,noauto
-
-ifeq		($(CODEGEN_PROC),ARM9)
-CCFLAGS_OPT_O_	+= -opt speed
-else
-CCFLAGS_OPT_O_	+= -opt space
-endif
+CCFLAGS_OPT_O_	= -O3
 
 ifeq		($(NITRO_BUILD_TYPE),FINALROM)
 CCFLAGS_OPT	?= $(CCFLAGS_OPT_O_)
@@ -754,11 +748,6 @@ endif
 ifndef		NITRO_NO_OPT_G
 CCFLAGS_OPT	+= -g
 LDFLAGS_OPT	+= -g
-endif
-
-#--------CW2.0beta2 以降のバージョンではサイズ増大問題回避のため -ipa file オプションが必須
-ifeq		($(CW_MAJOR_VER),2)
-CCFLAGS_OPT	+= -ipa file
 endif
 
 
@@ -837,26 +826,26 @@ CCFLAGS_WARNING_FULL	= all,cmdline,illpragmas,emptydecl,possible,unusedarg,unuse
 
 CCFLAGS_WARNING_NIGHTLY	= all,padding,notused,ptrintconv,undefmacro
 
-CCFLAGS_MSGSTYLE	?= -msgstyle std
+CCFLAGS_MSGSTYLE	=
 
 ifdef	NITRO_WARNING_NIGHTLY
 CCFLAGS_WARNING		?= -w $(CCFLAGS_WARNING_NIGHTLY)
 endif
 
 ifdef	NITRO_WARNING_STRICT
-CCFLAGS_WARNING		?= -w $(CCFLAGS_WARNING_FULL)
+CCFLAGS_WARNING		?= -Wall -Wextra
 else
-CCFLAGS_WARNING		?= -w all
+CCFLAGS_WARNING		?= -Wall -Wextra
 endif
-LDFLAGS_WARNING		?= -w on
-ARFLAGS_WARNING		?= -w on
+LDFLAGS_WARNING		?=
+ARFLAGS_WARNING		?=
 
 ifeq	($(NITROSDK_LANG),en)
-CCFLAGS_ENCODING	?= -enc ascii
+CCFLAGS_ENCODING	?=
 else
-CCFLAGS_ENCODING	?= -enc SJIS
+CCFLAGS_ENCODING	?=
 endif
-CCFLAGS_CHARTYPE	?= -char signed
+CCFLAGS_CHARTYPE	?= -fsigned-char
 
 CCFLAGS_MISC	= $(CCFLAGS_MSGSTYLE) $(CCFLAGS_WARNING) $(CCFLAGS_ENCODING) $(CCFLAGS_CHARTYPE)
 ASFLAGS_MISC	= $(CCFLAGS_MSGSTYLE)
@@ -866,10 +855,10 @@ ARFLAGS_MISC	= $(CCFLAGS_MSGSTYLE) $(ARFLAGS_WARNING)
 
 #----------------------------------------------------------------------------
 
-CCFLAGS_SYS	?= -stdinc -enum int -stdkeywords off -Cpp_exceptions off
+CCFLAGS_SYS	?= -fno-exceptions -fno-short-enums
 ASFLAGS_SYS	?= -nostdinc -DSDK_ASM
-LDFLAGS_SYS	?= -stdlib -map closure -main _start
-ARFLAGS_SYS	?= -library
+LDFLAGS_SYS	?= -e _start
+ARFLAGS_SYS	?= rcs
 
 
 CCFLAGS		= -lang c $(CCFLAGS_ARCH) $(CCFLAGS_OPT) $(CCFLAGS_MISC) \

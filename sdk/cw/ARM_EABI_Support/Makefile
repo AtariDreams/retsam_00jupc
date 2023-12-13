@@ -10,10 +10,10 @@ else
 WINPATH := winepath
 endif
 
-MWCC = $(WINE) ../ARM_Tools/Command_Line_Tools/2.0/sp2/mwccarm.exe
-MWAR = $(WINE) ../ARM_Tools/Command_Line_Tools/mwldarm.exe
+MWCC = arm-none-eabi-gcc
+MWAR = arm-none-eabi-ar
 
-ARFLAGS = -msgstyle std -w on -library
+ARFLAGS = rc
 
 MSL_C_ARCHIVE_FILE := msl/MSL_C/MSL_ARM/Lib/MSL_C_NITRO_Ai_LE.a
 MSL_EXTRAS_ARCHIVE_FILE := msl/MSL_Extras/MSL_ARM/Lib/MSL_Extras_NITRO_Ai_LE.a
@@ -93,10 +93,12 @@ all: $(MSL_C_ARCHIVE_FILE) $(MSL_EXTRAS_ARCHIVE_FILE) $(MSL_CXX_ARCHIVE_FILE) $(
 DEPFILES := $(MSL_C_DEPFILES) $(MSL_EXTRAS_DEPFILES) $(MSL_CXX_DEPFILES) $(NITRO_RUNTIME_DEPFILES)
 
 # TODO: warnings
-MSL_C_MWCFLAGS := -O4 -opt speed -proc arm946e -interworking -trigraphs off -stdkeywords off -enum min -ansi off -wchar_t on -cpp_exceptions on -strings reuse -inline on,noauto,bottomup -RTTI on -char signed -bool on -lang c -ipa file -gccinc
-MSL_EXTRAS_MWCFLAGS := -O4 -opt speed -proc arm946e -interworking -requireprotos -trigraphs off -stdkeywords off -enum min -ansi off -wchar_t on -cpp_exceptions off -strings reuse -inline on,noauto,bottomup -RTTI off -char unsigned -bool off -iso_templates on -lang c99 -ipa file -gccinc
-MSL_CXX_MWCFLAGS := -O4 -opt speed -proc arm946e -interworking -lang c++ -requireprotos -trigraphs on -stdkeywords off -enum min -ansi off -wchar_t on -cpp_exceptions on -strings reuse -inline on,noauto,level=8 -RTTI on -char unsigned -bool on -iso_templates on -ipa file -gccinc
-NITRO_RUNTIME_MWCFLAGS := -O4 -opt speed -proc arm946e -interworking -trigraphs off -stdkeywords off -enum min -ansi off -wchar_t on -cpp_exceptions on -strings reuse -inline on,noauto,bottomup -RTTI on -char unsigned -bool on -iso_templates off -lang c99 -ipa file -gccinc
+
+# Corresponding GCC Flags
+MSL_C_MWCFLAGS := -O3 -mcpu=arm946e-s -mthumb-interwork -fno-trigraphs -std=c99 -fsigned-char -fexceptions -fno-rtti -fno-threadsafe-statics -fmerge-all-constants -fipa-pta
+MSL_EXTRAS_MWCFLAGS := -O3 -mcpu=arm946e-s -mthumb-interwork -fno-trigraphs -std=c99 -funsigned-char -fno-exceptions -fno-rtti -fno-threadsafe-statics -fmerge-all-constants -fipa-pta
+MSL_CXX_MWCFLAGS := -O3 -mcpu=arm946e-s -mthumb-interwork -fno-trigraphs -std=c++2a -funsigned-char -fexceptions -frtti -fno-threadsafe-statics -fmerge-all-constants -fipa-pta
+NITRO_RUNTIME_MWCFLAGS := -O3 -mcpu=arm946e-s -mthumb-interwork -fno-trigraphs -std=c99 -funsigned-char -fexceptions -frtti -fno-threadsafe-statics -fmerge-all-constants -fipa-pta
 
 CW_INCLUDE_DIRS := ./msl/MSL_C/MSL_ARM/Include		\
 		  ./msl/MSL_C/MSL_Common/Include		\

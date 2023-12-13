@@ -1,13 +1,13 @@
 
 include ../sdk/NitroSDK/build/buildtools/commondefs.wine
 
-AS = $(WINE) ../sdk/cw/ARM_Tools/Command_Line_Tools/mwasmarm.exe
-AR = $(WINE) ../sdk/cw/ARM_Tools/Command_Line_Tools/mwldarm.exe
-ARFLAGS = -msgstyle std -w on -library
+AS = arm-none-eabi-as
+AR = arm-none-eabi-ar
+ARFLAGS = rc
 
 all: libsyscall.a
 
-ASFLAGS = -proc arm5te -i src/ -msgstyle std
+ASFLAGS = -march=armv5te
 
 .PRECIOUS: libsyscall.o
 

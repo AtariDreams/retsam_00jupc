@@ -85,7 +85,7 @@ endif
 # NITRO-DWC ÇÕç≈å„Ç…éwíË       #
 
 #  INCLUDESÇ…SDK2.xëŒçÙÇì¸ÇÍÇÈÅB
-INCLUDES		= -gccinc -I. $(INCLUDE_DIRS)
+INCLUDES		= -I. $(INCLUDE_DIRS)
     include $(NITRODWC_ROOT)/build/buildtools/modulerules.dwc
 
 #________________________________#

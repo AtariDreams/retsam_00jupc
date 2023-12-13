@@ -32,10 +32,10 @@ SN_BINDIR	 = $(SN_NDS_ROOT)/bin
 
 
 #----------------------------------------------------------------------------
-SNCC		:= $(SN_BINDIR)/ndssnc.exe
-SNAS		:= $(SN_BINDIR)/ndsas.exe
-SNLD		:= $(SN_BINDIR)/ndsld.exe
-SNAR		:= $(SN_BINDIR)/snarl.exe
+SNCC		:= arm-none-eabi-gcc
+SNAS		:= arm-none-eabi-as
+SNLD		:= arm-none-eabi-ld
+SNAR		:= arm-none-eabi-ar
 
 CC		:= $(SNCC)
 AS		:= $(SNAS)
@@ -211,10 +211,10 @@ ARFLAGS_MISC	= $(CCFLAGS_MSGSTYLE) $(ARFLAGS_WARNING)
 
 
 #----------------------------------------------------------------------------
-CCFLAGS_SYS	?= -stdinc -nostdlib
-ASFLAGS_SYS	?= -stdinc -DSDK_ASM
+CCFLAGS_SYS	?= -nostdlib
+ASFLAGS_SYS	?= -DSDK_ASM
 LDFLAGS_SYS	?= -e _start
-ARFLAGS_SYS	?= -rcuT
+ARFLAGS_SYS	?= rcs
 
 CCFLAGS		= $(CCFLAGS_ARCH) $(CCFLAGS_OPT) $(CCFLAGS_MISC) \
 		  $(CCFLAGS_SYS)  $(MACRO_FLAGS) $(MACRO_FLAGS_CC)
