@@ -5,6 +5,7 @@ WINE :=
 
 # Linux
 ifneq ($(OS),Windows_NT)
+PATH_UNIX = $1
 PATH_UNIX2DOS = $(patsubst /%,Z:/%,$1)
 PATH_DEPEND_RULE := 's@^\tZ:/@\t/@'
 WINE := wine

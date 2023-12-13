@@ -513,7 +513,7 @@ The compiler now emits a error and the compiler stops if a previously
 defined macro has a different definition in a precompiled header file.
 
      --- my.pch++ --
-     #pragma precompile_target "my.gch++"
+     #pragma precompile_target "my.h.gch++"
 
      #define NG_VALUE 123
      #define OK_VALUE 456
@@ -523,7 +523,7 @@ defined macro has a different definition in a precompiled header file.
      #define NG_VALUE 1234
      #define OK_VALUE 456
 
-     #include "my.gch++"  // error and stop for NG_VALUE redef,
+     #include "my.h.gch++"  // error and stop for NG_VALUE redef,
                           // no error for OK_VALUE
 
      ----------------
@@ -531,7 +531,7 @@ defined macro has a different definition in a precompiled header file.
          =>
 
      Error : macro 'NG_VALUE' redefined
-     test.cpp line 4   #include "my.gch++"
+     test.cpp line 4   #include "my.h.gch++"
 
 
 * MWGD68 COMPILER GENERATES WRONG INSTRUCTIONS FOR LARGE THUMB SWITCH-CASE

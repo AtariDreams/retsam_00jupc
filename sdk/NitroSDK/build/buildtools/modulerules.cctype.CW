@@ -70,7 +70,7 @@
 # PCH の削除のトリガを make clean から make clobber に変更
 #
 # Revision 1.55  2005/07/25 01:31:12  yasu
-# .pch -> .gch への変更
+# .pch -> .h.gch への変更
 #
 # Revision 1.54  2005/07/21 11:55:21  yasu
 # EDEPENDS_NEF/BIN を追加
@@ -263,8 +263,8 @@ endif
 vpath	%.a		$(ALIBVPATH)
 vpath	%.o		$(ALIBVPATH)
 
-INCLUDE_DIRS		= $(subst \ -I,\ ,$(addprefix -I,$(call PATH_UNIX2DOS,$(AINCLUDE_DIRS))))
-LIBRARY_DIRS		= $(subst \ -L,\ ,$(addprefix -L,$(call PATH_UNIX2DOS,$(ALIBRARY_DIRS))))
+INCLUDE_DIRS		= $(subst \ -I,\ ,$(addprefix -I,$(call PATH_UNIX,$(AINCLUDE_DIRS))))
+LIBRARY_DIRS		= $(subst \ -L,\ ,$(addprefix -L,$(call PATH_UNIX,$(ALIBRARY_DIRS))))
 LIBRARIES		= $(subst \ -l,\ ,$(addprefix -l,$(ALIBRARIES)))
 
 INCLUDES		= -I. $(INCLUDE_DIRS)
@@ -292,7 +292,7 @@ endef
 ifdef	NITRO_STD_PCHDR
 ifndef	NITRO_NO_STD_PCHDR
 
-# .gch
+# .h.gch
 PCHDR_SRC	= $(ROOT)/include/nitro.h
 PCHDR_CACHE	= $(ROOT)/cache/include
 
@@ -300,18 +300,18 @@ PCHDR_C_DEFS	= $(sort $(filter -DSDK_%,$(CCFLAGS)))
 PCHDR_C_NODEF	= $(filter-out -D%,$(CCFLAGS))
 PCHDR_C_NAME	= $(subst $(SPACE),,$(subst -DSDK_,.,$(subst =,-,$(PCHDR_C_DEFS))))
 PCHDR_C_BASE	= $(PCHDR_CACHE)/$(notdir $(PCHDR_SRC))$(PCHDR_C_NAME).C
-PCHDR_C_MCH	= $(PCHDR_C_BASE).gch
+PCHDR_C_MCH	= $(PCHDR_C_BASE).h.gch
 PCHDR_C_DEPEND	= $(PCHDR_C_BASE).depend
-PCHDR_CCFLAGS	= -include $(call PATH_UNIX2DOS,$(PCHDR_C_MCH))
+PCHDR_CCFLAGS	= -include $(call PATH_UNIX,$(PCHDR_C_MCH))
 CCFLAGS_NOLDEF	= $(PCHDR_C_DEFS) $(PCHDR_C_NODEF) 
 
 PCHDR_CXX_DEFS	= $(sort $(filter -DSDK_%,$(CXXFLAGS)))
 PCHDR_CXX_NODEF	= $(filter-out -D%,$(CXXFLAGS))
 PCHDR_CXX_NAME	= $(subst $(SPACE),,$(subst -DSDK_,.,$(subst =,-,$(PCHDR_CXX_DEFS))))
 PCHDR_CXX_BASE	= $(PCHDR_CACHE)/$(notdir $(PCHDR_SRC))$(PCHDR_CXX_NAME).CXX
-PCHDR_CXX_MCH	= $(PCHDR_CXX_BASE).gch
+PCHDR_CXX_MCH	= $(PCHDR_CXX_BASE).h.gch
 PCHDR_CXX_DEPEND= $(PCHDR_CXX_BASE).depend
-PCHDR_CXXFLAGS	= -include $(call PATH_UNIX2DOS,$(PCHDR_CXX_MCH))
+PCHDR_CXXFLAGS	= -include $(call PATH_UNIX,$(PCHDR_CXX_MCH))
 CXXFLAGS_NOLDEF	= $(PCHDR_CXX_DEFS) $(PCHDR_CXX_NODEF) 
 
 GDIRT_CLOBBER	+= $(PCHDR_CACHE)/$(notdir $(PCHDR_SRC)).*
@@ -321,9 +321,9 @@ ifeq	($(MAKECMDGOALS),do-build)
 ## $(call BUILD_PCHDR,$(BASE),$(CCFLAGS))
 define BUILD_PCHDR
 	@$(CP) $(PCHDR_SRC) $(1).h
-	($(CD) $(dir $(1).gch) && \
-	 $(CC) $(subst -include ,-DSDK_PCHDR_DUMMY_,$(2)) $(INCLUDES) -MD -x c-header -c $(notdir $(1).gch) $(notdir $(1).h))
-	@($(ECHO) $(1).gch: $(PCHDR_SRC) \\       >  $(1).depend && \
+	($(CD) $(dir $(1).h.gch) && \
+	 $(CC) $(subst -include ,-DSDK_PCHDR_DUMMY_,$(2)) $(INCLUDES) -MD -x c-header -c $(notdir $(1).h.gch) $(notdir $(1).h))
+	@($(ECHO) $(1).h.gch: $(PCHDR_SRC) \\       >  $(1).depend && \
 	  $(SED) -e '1d' -e $(DEPEND_RULE) -e $(PATH_DEPEND_RULE) $(1).d >> $(1).depend && $(RM) $(1).d $(1).h)
 endef
 
